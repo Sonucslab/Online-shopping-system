@@ -90,6 +90,9 @@ h3 {
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
+.checkout-container {
+  padding-top: 100px;
+}
 
 .flex {
   display: flex;
@@ -154,6 +157,13 @@ h3 {
   background-color: var(--surface-color);
   border-bottom: 1px solid var(--border-color);
   padding: var(--spacing-md) 0;
+
+  /* Fixed navbar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .navbar .container {
@@ -299,6 +309,7 @@ h3 {
 main {
   flex-grow: 1;
   padding: var(--spacing-lg) 0;
+  padding-top: 90px;
 }
 
 /* Footer */
