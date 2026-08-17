@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus | Your Cart</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container flex justify-between items-center">
+      <a href="index.html" class="logo">NEXUS<span>.</span></a>
+      <ul class="nav-links flex gap-lg">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+      <a href="cart.html" class="cart-icon">
+        <i class="fa-solid fa-cart-shopping" style="color: var(--primary-color);"></i>
+        <span class="cart-badge" id="cart-count">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="container" style="padding-top: var(--spacing-xl);">
+    <h1 style="margin-bottom: var(--spacing-lg);">Your Cart</h1>
+    
+    <div class="grid" style="grid-template-columns: 2fr 1fr; gap: var(--spacing-lg);">
+      <!-- Cart Items List -->
+      <div class="glass-card flex-col gap-md" id="cart-items-container">
+        <!-- JS will populate items here -->
+        <div style="text-align: center; color: var(--text-muted); padding: var(--spacing-lg);">
+          <i class="fa-solid fa-basket-shopping" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+          <p>Your cart is empty.</p>
+          <a href="index.html#products" class="btn btn-primary" style="margin-top: 1rem;">Start Shopping</a>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="glass-card flex-col" style="height: fit-content; position: sticky; top: 100px;">
+        <h3 style="border-bottom: 1px solid var(--surface-border); padding-bottom: var(--spacing-sm); margin-bottom: var(--spacing-md);">Order Summary</h3>
+        
+        <div class="flex justify-between" style="margin-bottom: var(--spacing-sm);">
+          <span style="color: var(--text-muted);">Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between" style="margin-bottom: var(--spacing-sm);">
+          <span style="color: var(--text-muted);">Tax (8%)</span>
+          <span id="cart-tax">$0.00</span>
+        </div>
+        <div class="flex justify-between" style="margin-bottom: var(--spacing-md); border-top: 1px solid var(--surface-border); padding-top: var(--spacing-sm);">
+          <strong>Total</strong>
+          <strong id="cart-total" style="color: var(--primary-color); font-size: 1.25rem;">$0.00</strong>
+        </div>
+        
+        <a href="checkout.html" class="btn btn-primary w-full" id="checkout-btn" style="text-align: center;">Proceed to Checkout</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

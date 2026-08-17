@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus | Login</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="flex items-center justify-center" style="min-height: 100vh;">
+
+  <!-- Decorative Background Elements -->
+  <div style="position: absolute; top: 10%; left: 10%; width: 300px; height: 300px; background: var(--primary-color); border-radius: 50%; filter: blur(100px); opacity: 0.2; z-index: -1;"></div>
+  <div style="position: absolute; bottom: 10%; right: 10%; width: 250px; height: 250px; background: var(--accent-color); border-radius: 50%; filter: blur(100px); opacity: 0.15; z-index: -1;"></div>
+
+  <a href="index.html" class="logo" style="position: absolute; top: var(--spacing-lg); left: var(--spacing-lg);">
+    NEXUS<span>.</span>
+  </a>
+
+  <main class="container flex justify-center animate-fade-in" style="width: 100%; max-width: 500px;">
+    <div class="glass-card" style="width: 100%;">
+      
+      <!-- Toggle Header -->
+      <div class="flex justify-between items-center" style="margin-bottom: var(--spacing-lg); border-bottom: 1px solid var(--surface-border); padding-bottom: var(--spacing-sm);">
+        <h2 id="form-title" style="margin: 0;">Welcome Back</h2>
+        <div class="flex gap-sm">
+          <button class="btn btn-secondary" id="toggle-login" style="padding: 0.25rem 0.75rem; border-color: var(--primary-color); color: var(--primary-color);">Login</button>
+          <button class="btn btn-secondary" id="toggle-signup" style="padding: 0.25rem 0.75rem; border-color: transparent;">Sign Up</button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" action="php/login.php" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input type="email" id="login-email" name="email" class="form-input" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <div class="flex justify-between">
+            <label class="form-label" for="login-password">Password</label>
+            <a href="#" style="font-size: 0.75rem; color: var(--primary-color);">Forgot?</a>
+          </div>
+          <input type="password" id="login-password" name="password" class="form-input" placeholder="••••••••" required>
+        </div>
+        
+        <!-- Role Selection (For Project Demo Purposes) -->
+        <div class="form-group" style="margin-top: 1rem;">
+          <label class="form-label">Login As:</label>
+          <div class="flex gap-md" style="margin-top: 0.5rem;">
+            <label class="flex items-center gap-sm" style="cursor: pointer;">
+              <input type="radio" name="role" value="customer" checked> Customer
+            </label>
+            <label class="flex items-center gap-sm" style="cursor: pointer;">
+              <input type="radio" name="role" value="admin"> Admin
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-md);">Sign In</button>
+      </form>
+
+      <!-- Signup Form (Hidden initially) -->
+      <form id="signup-form" action="php/signup.php" method="POST" style="display: none;">
+        <div class="form-group">
+          <label class="form-label" for="signup-name">Full Name</label>
+          <input type="text" id="signup-name" name="name" class="form-input" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" name="email" class="form-input" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: var(--spacing-md);">Create Account</button>
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script>
+    // Simple toggle logic for the forms
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const toggleLoginBtn = document.getElementById('toggle-login');
+    const toggleSignupBtn = document.getElementById('toggle-signup');
+    const formTitle = document.getElementById('form-title');
+
+    toggleLoginBtn.addEventListener('click', () => {
+      loginForm.style.display = 'block';
+      signupForm.style.display = 'none';
+      formTitle.textContent = 'Welcome Back';
+      toggleLoginBtn.style.borderColor = 'var(--primary-color)';
+      toggleLoginBtn.style.color = 'var(--primary-color)';
+      toggleSignupBtn.style.borderColor = 'transparent';
+      toggleSignupBtn.style.color = 'var(--text-main)';
+    });
+
+    toggleSignupBtn.addEventListener('click', () => {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'block';
+      formTitle.textContent = 'Create Account';
+      toggleSignupBtn.style.borderColor = 'var(--primary-color)';
+      toggleSignupBtn.style.color = 'var(--primary-color)';
+      toggleLoginBtn.style.borderColor = 'transparent';
+      toggleLoginBtn.style.color = 'var(--text-main)';
+    });
+
+    // Mock login routing for demo purposes
+    loginForm.addEventListener('submit', (e) => {
+      // Allow PHP to handle it later, but for frontend demo, we can intercept or let it post.
+      // Since PHP is empty, we will mock routing based on role selection for now.
+      e.preventDefault(); 
+      const role = document.querySelector('input[name="role"]:checked').value;
+      if (role === 'admin') {
+        window.location.href = 'admin/dashboard.html';
+      } else {
+        window.location.href = 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
