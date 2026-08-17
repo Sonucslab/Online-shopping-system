@@ -1,33 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Electronics - Login</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Electronics - Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <header class="navbar">
+      <div class="container">
+        <a href="index.html" class="logo">OnlineShopping</a>
 
-  <div class="card" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Login</h2>
-    
-    <form action="php/login.php" method="POST">
-      <div class="form-group">
-        <label class="form-label" for="email">Email</label>
-        <input type="email" id="email" name="email" class="form-control" required>
+        <nav class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="#products">Products</a>
+          <a href="login.html">Login/SignUp</a>
+          <!-- <a href="register.html">Sign Up</a> -->
+          <a href="cart.html">
+            <i class="fa-solid fa-cart-shopping"></i> Cart (<span
+              id="cart-count"
+              >0</span
+            >)
+          </a>
+        </nav>
       </div>
-      <div class="form-group">
-        <label class="form-label" for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" required>
+    </header>
+
+    <div class="card" style="width: 100%; margin: auto; max-width: 400px">
+      <h2 class="text-center" style="margin-bottom: var(--spacing-lg)">
+        Login
+      </h2>
+
+      <form action="php/login.php" method="POST">
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-control"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          style="margin-top: var(--spacing-md)"
+        >
+          Sign In
+        </button>
+      </form>
+
+      <div class="text-center" style="margin-top: var(--spacing-md)">
+        <p style="font-size: 0.875rem">
+          Don't have an account? <a href="register.html">Sign Up</a>
+        </p>
+        <p style="font-size: 0.875rem; margin-top: 0.5rem">
+          <a href="admin/admin-login.html">Admin Login</a>
+        </p>
       </div>
-      <button type="submit" class="btn btn-primary w-100" style="margin-top: var(--spacing-md);">Sign In</button>
-    </form>
-    
-    <div class="text-center" style="margin-top: var(--spacing-md);">
-      <p style="font-size: 0.875rem;">Don't have an account? <a href="register.html">Sign Up</a></p>
-      <p style="font-size: 0.875rem; margin-top: 0.5rem;"><a href="admin/admin-login.html">Admin Login</a></p>
     </div>
-  </div>
-
-</body>
+  </body>
 </html>
