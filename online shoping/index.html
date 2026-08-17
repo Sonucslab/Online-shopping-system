@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Electronics - Home</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Nexus Electronics</a>
+      
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="#products">Products</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Sign Up</a>
+        <a href="cart.html">
+          <i class="fa-solid fa-cart-shopping"></i> Cart (<span id="cart-count">0</span>)
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Simple Hero Section -->
+    <section class="container mb-4 text-center" style="padding: 4rem 0; background-color: #e9ecef; border: 1px solid var(--border-color);">
+      <h1>Welcome to Nexus Electronics</h1>
+      <p style="font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem;">Your one-stop shop for professional gear and electronics.</p>
+      <a href="#products" class="btn btn-primary">Shop Now</a>
+    </section>
+
+    <!-- Categories -->
+    <section class="container mb-4">
+      <h2 style="border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Categories</h2>
+      <div class="grid grid-cols-4 text-center">
+        <div class="card" style="cursor: pointer;">
+          <i class="fa-solid fa-laptop" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+          <h3>Laptops</h3>
+        </div>
+        <div class="card" style="cursor: pointer;">
+          <i class="fa-solid fa-mobile-screen-button" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+          <h3>Smartphones</h3>
+        </div>
+        <div class="card" style="cursor: pointer;">
+          <i class="fa-solid fa-headphones-simple" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+          <h3>Audio</h3>
+        </div>
+        <div class="card" style="cursor: pointer;">
+          <i class="fa-solid fa-desktop" style="font-size: 2rem; color: var(--primary-color); margin-bottom: 0.5rem;"></i>
+          <h3>Desktops</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="container mb-4">
+      <h2 style="border-bottom: 2px solid var(--primary-color); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 1.5rem;">Featured Products</h2>
+      
+      <div class="grid grid-cols-3">
+        <!-- Product 1 -->
+        <article class="card product-card">
+          <div style="background-color: #f1f3f5; height: 200px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); margin: -1rem -1rem 1rem -1rem;">
+             <i class="fa-solid fa-laptop-code" style="font-size: 4rem; color: var(--secondary-color);"></i>
+          </div>
+          <h3>Nexus ProBook M2</h3>
+          <span class="price">$1,299.00</span>
+          <button class="btn btn-primary w-100" onclick="addToCart(1, 'Nexus ProBook M2', 1299)">Add to Cart</button>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="card product-card">
+          <div style="background-color: #f1f3f5; height: 200px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); margin: -1rem -1rem 1rem -1rem;">
+             <i class="fa-solid fa-headphones" style="font-size: 4rem; color: var(--secondary-color);"></i>
+          </div>
+          <h3>Sonic Noise-Cancelling Buds</h3>
+          <span class="price">$199.00</span>
+          <button class="btn btn-primary w-100" onclick="addToCart(2, 'Sonic Noise-Cancelling Buds', 199)">Add to Cart</button>
+        </article>
+
+        <!-- Product 3 -->
+        <article class="card product-card">
+          <div style="background-color: #f1f3f5; height: 200px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-color); margin: -1rem -1rem 1rem -1rem;">
+             <i class="fa-solid fa-mobile-screen" style="font-size: 4rem; color: var(--secondary-color);"></i>
+          </div>
+          <h3>Aura X1 Smartphone</h3>
+          <span class="price">$899.00</span>
+          <button class="btn btn-primary w-100" onclick="addToCart(3, 'Aura X1 Smartphone', 899)">Add to Cart</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Nexus Electronics. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>

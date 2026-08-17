@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Electronics - Shopping Cart</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Nexus Electronics</a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#products">Products</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 style="margin-bottom: var(--spacing-lg); border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem;">Shopping Cart</h1>
+    
+    <div class="grid" style="grid-template-columns: 2fr 1fr; gap: var(--spacing-lg);">
+      
+      <!-- Cart Items -->
+      <div id="cart-items-container" class="card flex-col gap-md">
+        <!-- JS will populate -->
+        <p class="text-center text-muted">Loading cart...</p>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="card" style="height: fit-content;">
+        <h3 style="border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Order Summary</h3>
+        
+        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
+          <span>Tax (8%)</span>
+          <span id="cart-tax">$0.00</span>
+        </div>
+        <div class="flex justify-between" style="margin-bottom: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color);">
+          <strong>Total</strong>
+          <strong id="cart-total" style="font-size: 1.25rem;">$0.00</strong>
+        </div>
+        
+        <a href="checkout.html" class="btn btn-primary w-100" id="checkout-btn">Proceed to Checkout</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Nexus Electronics.</p>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>

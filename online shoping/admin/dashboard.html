@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <a href="../index.html" class="logo">Nexus Admin</a>
+    <nav class="admin-nav">
+      <a href="dashboard.html" class="active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+      <a href="orders.html"><i class="fa-solid fa-box"></i> Orders</a>
+      <a href="products.html"><i class="fa-solid fa-tag"></i> Products</a>
+      <a href="categories.html"><i class="fa-solid fa-list"></i> Categories</a>
+      <a href="customers.html"><i class="fa-solid fa-users"></i> Customers</a>
+      <a href="../login.html" style="margin-top: 2rem; color: #dc3545;"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <h2>Dashboard Overview</h2>
+      <div>
+        <strong>Admin User</strong>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-4 mb-4">
+      <div class="card text-center">
+        <h4 style="color: var(--text-muted);">Total Sales</h4>
+        <div style="font-size: 1.5rem; font-weight: 700;">$15,240</div>
+      </div>
+      <div class="card text-center">
+        <h4 style="color: var(--text-muted);">Orders</h4>
+        <div style="font-size: 1.5rem; font-weight: 700;">42</div>
+      </div>
+      <div class="card text-center">
+        <h4 style="color: var(--text-muted);">Products</h4>
+        <div style="font-size: 1.5rem; font-weight: 700;">18</div>
+      </div>
+      <div class="card text-center">
+        <h4 style="color: var(--text-muted);">Customers</h4>
+        <div style="font-size: 1.5rem; font-weight: 700;">112</div>
+      </div>
+    </div>
+
+    <!-- Recent Orders Table -->
+    <div class="card">
+      <h3 style="margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border-color);">Recent Orders</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#ORD-001</td>
+            <td>John Doe</td>
+            <td>2026-08-17</td>
+            <td><span style="color: var(--primary-color);">Processing</span></td>
+            <td>$1,299.00</td>
+          </tr>
+          <tr>
+            <td>#ORD-002</td>
+            <td>Jane Smith</td>
+            <td>2026-08-16</td>
+            <td><span style="color: var(--success-color);">Shipped</span></td>
+            <td>$199.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+</body>
+</html>
