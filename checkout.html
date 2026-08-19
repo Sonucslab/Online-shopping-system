@@ -3,110 +3,188 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Electronics - Checkout</title>
-  
+  <title>Checkout — Nexus Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <style>
+    .checkout-page { padding:40px 0; min-height:60vh; }
+    .checkout-grid { display:grid; grid-template-columns:3fr 2fr; gap:24px; max-width:960px; margin:0 auto; }
+    .checkout-card { background:#fff; border:1.5px solid #e5e7eb; border-radius:12px; padding:24px; }
+    .checkout-card h2 { font-size:18px; font-weight:700; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid #e5e7eb; }
+    .checkout-card h3 { font-size:15px; font-weight:700; margin:20px 0 12px; padding-top:16px; border-top:1px solid #f3f4f6; }
+    .row-2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .payment-options { display:flex; flex-direction:column; gap:8px; }
+    .payment-option { display:flex; align-items:center; gap:10px; padding:10px 14px; border:1.5px solid #e5e7eb; border-radius:8px; cursor:pointer; transition:border-color .2s; }
+    .payment-option:hover, .payment-option.selected { border-color:#2563eb; background:#eff6ff; }
+    .payment-option input { accent-color:#2563eb; }
+    .order-item { display:flex; justify-content:space-between; padding:8px 0; font-size:14px; color:#374151; border-bottom:1px solid #f9fafb; }
+    .summary-row { display:flex; justify-content:space-between; margin-bottom:6px; font-size:14px; color:#374151; }
+    .summary-total { display:flex; justify-content:space-between; padding-top:12px; border-top:2px solid #111827; margin-top:10px; font-size:18px; font-weight:700; }
+    .success-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:999; align-items:center; justify-content:center; }
+    .success-box { background:#fff; border-radius:16px; padding:3rem; text-align:center; max-width:400px; box-shadow:0 20px 60px rgba(0,0,0,.2); }
+    .success-box .check { width:64px; height:64px; background:#22c55e; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:#fff; font-size:28px; }
+    @media(max-width:768px){ .checkout-grid{grid-template-columns:1fr;} }
+  </style>
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="container text-center">
-      <a href="index.html" class="logo">Nexus Electronics Checkout</a>
+  <header class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="logo-text">Nexus<span class="logo-accent">Electronics</span></span>
+      </a>
+      <span style="margin-left:auto;font-size:14px;color:#6b7280;"><i class="fa-solid fa-lock" style="margin-right:4px;"></i> Secure Checkout</span>
     </div>
   </header>
 
-  <main class="container" style="max-width: 900px;">
-    
-    <div class="grid" style="grid-template-columns: 2fr 1fr; gap: var(--spacing-lg);">
-      
-      <!-- Checkout Form -->
-      <div class="card">
-        <h2 style="margin-bottom: var(--spacing-md); border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Billing Details</h2>
-        <form id="checkout-form" action="php/order.php" method="POST">
-          <div class="grid grid-cols-2 gap-md">
-            <div class="form-group">
-              <label class="form-label">First Name</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Last Name</label>
-              <input type="text" class="form-control" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Address</label>
-            <input type="text" class="form-control" required>
-          </div>
-          <div class="grid grid-cols-2 gap-md">
-            <div class="form-group">
-              <label class="form-label">City</label>
-              <input type="text" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Zip Code</label>
-              <input type="text" class="form-control" required>
-            </div>
-          </div>
+  <main class="checkout-page">
+    <div class="container">
+      <h1 style="font-size:22px;font-weight:700;margin-bottom:24px;">Checkout</h1>
 
-          <h3 style="margin: 1.5rem 0 1rem 0; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Payment Method</h3>
-          <div class="form-group">
-            <label class="form-label">Card Number</label>
-            <input type="text" class="form-control" placeholder="0000 0000 0000 0000" required>
-          </div>
-          <div class="grid grid-cols-2 gap-md">
-            <div class="form-group">
-              <label class="form-label">Expiry</label>
-              <input type="text" class="form-control" placeholder="MM/YY" required>
+      <div class="checkout-grid">
+        <!-- Form -->
+        <div class="checkout-card">
+          <h2><i class="fa-solid fa-user" style="color:#2563eb;margin-right:8px;"></i> Billing Details</h2>
+          <form id="checkout-form">
+            <div class="row-2">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" id="c-fname" name="first_name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="c-lname" name="last_name" required>
+              </div>
             </div>
             <div class="form-group">
-              <label class="form-label">CVC</label>
-              <input type="text" class="form-control" placeholder="123" required>
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" id="c-email" name="email" required>
             </div>
-          </div>
-          
-          <button type="submit" class="btn btn-primary w-100 mt-4">Place Order</button>
-        </form>
-      </div>
+            <div class="form-group">
+              <label class="form-label">Shipping Address</label>
+              <input type="text" class="form-control" id="c-address" name="shipping_address" required placeholder="Full address with city and zip">
+            </div>
+            <div class="row-2">
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" class="form-control" id="c-city" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Zip Code</label>
+                <input type="text" class="form-control" id="c-zip" required>
+              </div>
+            </div>
 
-      <!-- Order Summary -->
-      <div class="card" style="height: fit-content;">
-        <h3 style="border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Order Summary</h3>
-        
-        <div id="checkout-items-list" class="flex-col gap-sm" style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
-          <!-- JS populates -->
+            <h3><i class="fa-solid fa-credit-card" style="color:#2563eb;margin-right:8px;"></i> Payment Method</h3>
+            <div class="payment-options">
+              <label class="payment-option selected">
+                <input type="radio" name="payment_method" value="credit_card" checked> <i class="fa-solid fa-credit-card"></i> Credit Card
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment_method" value="debit_card"> <i class="fa-solid fa-credit-card"></i> Debit Card
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment_method" value="upi"> <i class="fa-solid fa-mobile-screen"></i> UPI
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment_method" value="net_banking"> <i class="fa-solid fa-building-columns"></i> Net Banking
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment_method" value="cod"> <i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" style="margin-top:24px;padding:14px;font-size:16px;border-radius:8px;" id="place-order-btn">
+              <i class="fa-solid fa-lock" style="margin-right:6px;"></i> Place Order
+            </button>
+          </form>
         </div>
-        
-        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
-          <span>Subtotal</span>
-          <span id="checkout-subtotal">$0.00</span>
-        </div>
-        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
-          <span>Tax</span>
-          <span id="checkout-tax">$0.00</span>
-        </div>
-        <div class="flex justify-between" style="margin-bottom: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color);">
-          <strong>Total</strong>
-          <strong id="checkout-total" style="font-size: 1.25rem;">$0.00</strong>
+
+        <!-- Order Summary -->
+        <div class="checkout-card" style="height:fit-content;position:sticky;top:100px;">
+          <h2><i class="fa-solid fa-receipt" style="color:#2563eb;margin-right:8px;"></i> Order Summary</h2>
+          <div id="checkout-items-list"></div>
+          <div style="margin-top:12px;">
+            <div class="summary-row"><span>Subtotal</span><span id="checkout-subtotal">$0.00</span></div>
+            <div class="summary-row"><span>Tax (8%)</span><span id="checkout-tax">$0.00</span></div>
+            <div class="summary-row"><span>Shipping</span><span style="color:#22c55e;">Free</span></div>
+            <div class="summary-total"><span>Total</span><span id="checkout-total">$0.00</span></div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
-  <footer>
-    <div class="container text-center">
-      <p>&copy; 2026 Nexus Electronics.</p>
+  <!-- Success Overlay -->
+  <div class="success-overlay" id="success-overlay">
+    <div class="success-box">
+      <div class="check"><i class="fa-solid fa-check"></i></div>
+      <h2 style="margin-bottom:8px;">Order Placed!</h2>
+      <p style="color:#6b7280;margin-bottom:8px;" id="success-msg">Your order has been placed successfully.</p>
+      <p style="font-size:14px;font-weight:600;margin-bottom:20px;" id="success-order-id"></p>
+      <a href="index.html" class="btn btn-primary" style="padding:12px 28px;border-radius:8px;">Continue Shopping</a>
     </div>
-  </footer>
+  </div>
 
   <script src="js/cart.js"></script>
   <script>
-    document.getElementById('checkout-form').addEventListener('submit', (e) => {
+    // Payment option selection highlight
+    document.querySelectorAll('.payment-option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.payment-option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        opt.querySelector('input').checked = true;
+      });
+    });
+
+    // Handle form submit — send to PHP backend
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Order placed successfully (Demo)!');
-      localStorage.removeItem('nexus_cart');
-      window.location.href = 'index.html';
+
+      const btn = document.getElementById('place-order-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+
+      const address = document.getElementById('c-address').value + ', ' +
+                      document.getElementById('c-city').value + ' ' +
+                      document.getElementById('c-zip').value;
+
+      const formData = new FormData();
+      formData.append('first_name', document.getElementById('c-fname').value);
+      formData.append('last_name', document.getElementById('c-lname').value);
+      formData.append('email', document.getElementById('c-email').value);
+      formData.append('shipping_address', address);
+      formData.append('payment_method', document.querySelector('input[name="payment_method"]:checked').value);
+      formData.append('cart', JSON.stringify(cart));
+
+      fetch('php/order.php', { method: 'POST', body: formData })
+        .then(r => r.json())
+        .then(data => {
+          if (data.success) {
+            // Clear local cart
+            cart = [];
+            localStorage.removeItem('nexus_cart');
+            updateCartCount();
+
+            document.getElementById('success-order-id').textContent = 'Order #ORD-' + String(data.order_id).padStart(3, '0');
+            document.getElementById('success-msg').textContent = 'Total: $' + parseFloat(data.total).toFixed(2);
+            document.getElementById('success-overlay').style.display = 'flex';
+          } else {
+            alert(data.error || 'Order failed. Please try again.');
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa-solid fa-lock" style="margin-right:6px;"></i> Place Order';
+          }
+        })
+        .catch(err => {
+          alert('Connection error. Make sure XAMPP is running.');
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-lock" style="margin-right:6px;"></i> Place Order';
+        });
     });
   </script>
+
 </body>
 </html>

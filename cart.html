@@ -3,62 +3,74 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Electronics - Shopping Cart</title>
-  
+  <title>Shopping Cart — Nexus Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <style>
+    .cart-page { padding:40px 0; min-height:60vh; }
+    .cart-grid { display:grid; grid-template-columns:2fr 1fr; gap:24px; }
+    .cart-item { display:flex; align-items:center; gap:16px; padding:16px 0; border-bottom:1px solid #f3f4f6; }
+    .cart-item-info h4 { font-size:15px; font-weight:600; color:#111827; margin-bottom:4px; }
+    .cart-item-info .price { font-size:15px; font-weight:700; color:#111827; }
+    .qty-controls { display:flex; align-items:center; gap:0; border:1.5px solid #e5e7eb; border-radius:8px; overflow:hidden; }
+    .qty-controls button { width:32px; height:32px; border:none; background:#f9fafb; cursor:pointer; font-size:16px; color:#374151; }
+    .qty-controls button:hover { background:#e5e7eb; }
+    .qty-controls span { width:36px; text-align:center; font-size:14px; font-weight:600; }
+    .remove-btn { color:#ef4444; font-size:13px; cursor:pointer; background:none; border:none; margin-left:8px; }
+    .remove-btn:hover { text-decoration:underline; }
+    .summary-card { background:#fff; border:1.5px solid #e5e7eb; border-radius:12px; padding:24px; height:fit-content; position:sticky; top:100px; }
+    .summary-row { display:flex; justify-content:space-between; margin-bottom:8px; font-size:14px; color:#374151; }
+    .summary-total { display:flex; justify-content:space-between; padding-top:12px; border-top:2px solid #111827; margin-top:12px; font-size:18px; font-weight:700; color:#111827; }
+    @media(max-width:768px){ .cart-grid{grid-template-columns:1fr;} }
+  </style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <header class="navbar">
-    <div class="container">
-      <a href="index.html" class="logo">Nexus Electronics</a>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="index.html#products">Products</a>
-        <a href="login.html">Login</a>
+  <header class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="logo-text">Nexus<span class="logo-accent">Electronics</span></span>
+      </a>
+      <nav class="nav-actions" style="margin-left:auto;">
+        <a href="products.html" class="nav-action-link"><i class="fa-solid fa-th-large"></i><span>Products</span></a>
+        <a href="cart.html" class="nav-action-link nav-cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><span class="cart-badge" id="cart-count">0</span></a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h2 style="margin-bottom: var(--spacing-lg); margin-top: 5px; padding-bottom: 0.5rem;">Shopping Cart</h2>
-    
-    <div class="grid" style="grid-template-columns: 2fr 1fr; gap: var(--spacing-lg);">
-      
-      <!-- Cart Items -->
-      <div id="cart-items-container" class="card flex-col gap-md">
-        <!-- JS will populate -->
-        <p class="text-center text-muted">Loading cart...</p>
-      </div>
+  <main class="cart-page">
+    <div class="container">
+      <h1 style="font-size:22px;font-weight:700;margin-bottom:24px;"><i class="fa-solid fa-cart-shopping" style="color:#2563eb;margin-right:8px;"></i> Shopping Cart</h1>
 
-      <!-- Order Summary -->
-      <div class="card" style="height: fit-content;">
-        <h3 style="border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">Order Summary</h3>
-        
-        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
-          <span>Subtotal</span>
-          <span id="cart-subtotal">$0.00</span>
+      <div class="cart-grid">
+        <!-- Cart Items -->
+        <div>
+          <div id="cart-items-container">Loading...</div>
         </div>
-        <div class="flex justify-between" style="margin-bottom: 0.5rem;">
-          <span>Tax (8%)</span>
-          <span id="cart-tax">$0.00</span>
+
+        <!-- Summary -->
+        <div class="summary-card">
+          <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e5e7eb;">Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+          <div class="summary-row"><span>Tax (8%)</span><span id="cart-tax">$0.00</span></div>
+          <div class="summary-row"><span>Shipping</span><span style="color:#22c55e;">Free</span></div>
+          <div class="summary-total"><span>Total</span><span id="cart-total">$0.00</span></div>
+          <a href="checkout.html" class="btn btn-primary w-100" id="checkout-btn" style="display:block;text-align:center;margin-top:16px;padding:12px;border-radius:8px;font-size:15px;">
+            Proceed to Checkout
+          </a>
+          <a href="products.html" style="display:block;text-align:center;margin-top:12px;font-size:13px;color:#6b7280;">
+            ← Continue Shopping
+          </a>
         </div>
-        <div class="flex justify-between" style="margin-bottom: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color);">
-          <strong>Total</strong>
-          <strong id="cart-total" style="font-size: 1.25rem;">$0.00</strong>
-        </div>
-        
-        <a href="checkout.html" class="btn btn-primary w-100" id="checkout-btn">Proceed to Checkout</a>
       </div>
     </div>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Nexus Electronics.</p>
-    </div>
+  <footer class="site-footer" style="background:#111827;color:#9ca3af;padding:20px 0;text-align:center;">
+    <p>&copy; 2026 Nexus Electronics.</p>
   </footer>
 
   <script src="js/cart.js"></script>

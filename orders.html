@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — Nexus Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <style>
+    .orders-page { padding:40px 0; min-height:60vh; }
+    .order-card { background:#fff; border:1.5px solid #e5e7eb; border-radius:12px; padding:20px; margin-bottom:16px; }
+    .order-header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid #f3f4f6; }
+    .order-id { font-weight:700; color:#111827; font-size:15px; }
+    .order-date { font-size:13px; color:#6b7280; }
+    .status-badge { padding:4px 12px; border-radius:100px; font-size:12px; font-weight:600; text-transform:capitalize; }
+    .status-pending { background:#fef3c7; color:#d97706; }
+    .status-processing { background:#dbeafe; color:#2563eb; }
+    .status-shipped { background:#ede9fe; color:#7c3aed; }
+    .status-delivered { background:#d1fae5; color:#059669; }
+    .status-cancelled { background:#fee2e2; color:#dc2626; }
+    .order-items { margin-bottom:12px; }
+    .order-item-row { display:flex; justify-content:space-between; padding:6px 0; font-size:14px; color:#374151; }
+    .order-total { display:flex; justify-content:space-between; padding-top:12px; border-top:1px solid #e5e7eb; font-weight:700; font-size:16px; }
+    .empty-state { text-align:center; padding:4rem 2rem; color:#6b7280; }
+    .empty-state i { font-size:3rem; color:#d1d5db; margin-bottom:16px; }
+  </style>
+</head>
+<body>
+
+  <header class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="logo-text">Nexus<span class="logo-accent">Electronics</span></span>
+      </a>
+      <nav class="nav-actions" style="margin-left:auto;">
+        <a href="products.html" class="nav-action-link"><i class="fa-solid fa-th-large"></i><span>Products</span></a>
+        <a href="cart.html" class="nav-action-link nav-cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><span class="cart-badge" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="orders-page">
+    <div class="container" style="max-width:800px;">
+      <h1 style="font-size:22px;font-weight:700;margin-bottom:24px;"><i class="fa-solid fa-box" style="color:#2563eb;margin-right:8px;"></i> My Orders</h1>
+      <div id="orders-container">
+        <p style="text-align:center;color:#6b7280;">Loading orders...</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="background:#111827;color:#9ca3af;padding:20px 0;text-align:center;">
+    <p>&copy; 2026 Nexus Electronics.</p>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script>
+    // For now, show a note that orders require login via XAMPP
+    // In production, this would fetch from php/order.php with session
+    const container = document.getElementById('orders-container');
+
+    // Try to fetch orders (requires PHP session)
+    fetch('php/cart.php')
+      .then(r => r.json())
+      .then(data => {
+        if (data.message && data.message.includes('Not logged in')) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <h3 style="margin-bottom:8px;color:#111827;">Login Required</h3>
+              <p>Please <a href="login.html" style="color:#2563eb;font-weight:600;">sign in</a> to view your order history.</p>
+            </div>
+          `;
+        }
+      })
+      .catch(() => {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fa-solid fa-server"></i>
+            <h3 style="margin-bottom:8px;color:#111827;">Server Required</h3>
+            <p>Please run this project using <strong>XAMPP</strong> (Apache + MySQL) to view orders from the database.</p>
+            <a href="index.html" class="btn btn-primary" style="margin-top:16px;padding:10px 24px;border-radius:8px;">← Back to Home</a>
+          </div>
+        `;
+      });
+  </script>
+
+</body>
+</html>

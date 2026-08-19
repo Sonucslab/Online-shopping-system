@@ -93,7 +93,7 @@ function renderCart() {
 function renderCheckout() {
     const list = document.getElementById('checkout-items-list');
     if (!list) return; // Not on checkout page
-    
+
     if (cart.length === 0) {
         list.innerHTML = '<p class="text-muted">No items in order.</p>';
     } else {
@@ -115,7 +115,7 @@ function updateTotals(prefix) {
     const subtotalEl = document.getElementById(`${prefix}-subtotal`);
     const taxEl = document.getElementById(`${prefix}-tax`);
     const totalEl = document.getElementById(`${prefix}-total`);
-    
+
     if (!subtotalEl || !taxEl || !totalEl) return;
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);

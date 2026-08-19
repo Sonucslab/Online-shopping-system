@@ -1,75 +1,79 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nexus Electronics - Login</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <header class="navbar">
-      <div class="container">
-        <a href="index.html" class="logo">OnlineShopping</a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Nexus Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { display:flex; align-items:center; justify-content:center; min-height:100vh; background:linear-gradient(135deg,#eff6ff,#eef2ff); font-family:'Inter',sans-serif; }
+    .login-card { background:#fff; padding:2.5rem; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,.08); width:100%; max-width:420px; }
+    .login-card h2 { text-align:center; margin-bottom:.5rem; color:#111827; font-size:22px; }
+    .login-subtitle { text-align:center; color:#6b7280; font-size:14px; margin-bottom:1.5rem; }
+    .logo-wrap { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:1.5rem; }
+    .logo-wrap .icon { width:40px; height:40px; background:#2563eb; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; }
+    .logo-wrap span { font-size:18px; font-weight:800; color:#111; }
+    .logo-wrap .accent { color:#2563eb; }
+    .error-msg { background:#fef2f2; color:#dc2626; padding:10px 14px; border-radius:8px; font-size:13px; margin-bottom:1rem; border:1px solid #fecaca; }
+    .success-msg { background:#f0fdf4; color:#16a34a; padding:10px 14px; border-radius:8px; font-size:13px; margin-bottom:1rem; border:1px solid #bbf7d0; }
+    .divider { text-align:center; color:#9ca3af; font-size:12px; margin:1.5rem 0; position:relative; }
+    .divider::before, .divider::after { content:''; position:absolute; top:50%; width:40%; height:1px; background:#e5e7eb; }
+    .divider::before { left:0; }
+    .divider::after { right:0; }
+  </style>
+</head>
+<body>
 
-        <nav class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="#products">Products</a>
-          <a href="login.html">Login/SignUp</a>
-          <!-- <a href="register.html">Sign Up</a> -->
-          <a href="cart.html">
-            <i class="fa-solid fa-cart-shopping"></i> Cart (<span
-              id="cart-count"
-              >0</span
-            >)
-          </a>
-        </nav>
-      </div>
-    </header>
-
-    <div class="card" style="width: 100%; margin: auto; max-width: 400px">
-      <h2 class="text-center" style="margin-bottom: var(--spacing-lg)">
-        Login
-      </h2>
-
-      <form action="php/login.php" method="POST">
-        <div class="form-group">
-          <label class="form-label" for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            class="form-control"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          style="margin-top: var(--spacing-md)"
-        >
-          Sign In
-        </button>
-      </form>
-
-      <div class="text-center" style="margin-top: var(--spacing-md)">
-        <p style="font-size: 0.875rem">
-          Don't have an account? <a href="register.html">Sign Up</a>
-        </p>
-        <p style="font-size: 0.875rem; margin-top: 0.5rem">
-          <a href="admin/admin-login.html">Admin Login</a>
-        </p>
-      </div>
+  <div class="login-card">
+    <div class="logo-wrap">
+      <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+      <span>Nexus<span class="accent">Electronics</span></span>
     </div>
-  </body>
+    <h2>Welcome Back</h2>
+    <p class="login-subtitle">Sign in to your account</p>
+
+    <div id="error-box" class="error-msg" style="display:none;"></div>
+    <div id="success-box" class="success-msg" style="display:none;"></div>
+
+    <form action="php/login.php" method="POST">
+      <div class="form-group">
+        <label class="form-label" for="email">Email Address</label>
+        <input type="email" id="email" name="email" class="form-control" required placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" required placeholder="Enter your password">
+      </div>
+      <button type="submit" class="btn btn-primary w-100" style="margin-top:1rem;padding:12px;font-size:15px;border-radius:8px;">Sign In</button>
+    </form>
+
+    <div class="divider">or</div>
+
+    <div class="text-center">
+      <p style="font-size:14px;color:#374151;">
+        Don't have an account? <a href="register.html" style="color:#2563eb;font-weight:600;">Sign Up</a>
+      </p>
+      <p style="font-size:13px;margin-top:.5rem;">
+        <a href="admin/admin-login.html" style="color:#6b7280;">Admin Login →</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error')) {
+      const box = document.getElementById('error-box');
+      box.textContent = params.get('error');
+      box.style.display = 'block';
+    }
+    if (params.get('success')) {
+      const box = document.getElementById('success-box');
+      box.textContent = params.get('success');
+      box.style.display = 'block';
+    }
+  </script>
+
+</body>
 </html>

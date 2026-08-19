@@ -1,36 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Electronics - Register</title>
+  <title>Sign Up — Nexus Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { display:flex; align-items:center; justify-content:center; min-height:100vh; background:linear-gradient(135deg,#eff6ff,#eef2ff); font-family:'Inter',sans-serif; padding:2rem 1rem; }
+    .register-card { background:#fff; padding:2.5rem; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,.08); width:100%; max-width:480px; }
+    .register-card h2 { text-align:center; margin-bottom:.5rem; color:#111827; font-size:22px; }
+    .register-subtitle { text-align:center; color:#6b7280; font-size:14px; margin-bottom:1.5rem; }
+    .logo-wrap { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:1.5rem; }
+    .logo-wrap .icon { width:40px; height:40px; background:#2563eb; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; }
+    .logo-wrap span { font-size:18px; font-weight:800; color:#111; }
+    .logo-wrap .accent { color:#2563eb; }
+    .error-msg { background:#fef2f2; color:#dc2626; padding:10px 14px; border-radius:8px; font-size:13px; margin-bottom:1rem; border:1px solid #fecaca; }
+    .row-2 { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  </style>
 </head>
-<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+<body>
 
-  <div class="card" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center" style="margin-bottom: var(--spacing-lg);">Create Account</h2>
-    
+  <div class="register-card">
+    <div class="logo-wrap">
+      <div class="icon"><i class="fa-solid fa-bolt"></i></div>
+      <span>Nexus<span class="accent">Electronics</span></span>
+    </div>
+    <h2>Create Account</h2>
+    <p class="register-subtitle">Join us and start shopping</p>
+
+    <div id="error-box" class="error-msg" style="display:none;"></div>
+
     <form action="php/register.php" method="POST">
-      <div class="form-group">
-        <label class="form-label" for="name">Full Name</label>
-        <input type="text" id="name" name="name" class="form-control" required>
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label" for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" class="form-control" required placeholder="John">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" class="form-control" required placeholder="Doe">
+        </div>
       </div>
       <div class="form-group">
-        <label class="form-label" for="email">Email</label>
-        <input type="email" id="email" name="email" class="form-control" required>
+        <label class="form-label" for="email">Email Address</label>
+        <input type="email" id="email" name="email" class="form-control" required placeholder="you@example.com">
       </div>
       <div class="form-group">
         <label class="form-label" for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control" required>
+        <input type="password" id="password" name="password" class="form-control" required placeholder="Min. 6 characters" minlength="6">
       </div>
-      <button type="submit" class="btn btn-primary w-100" style="margin-top: var(--spacing-md);">Sign Up</button>
+      <div class="form-group">
+        <label class="form-label" for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone" class="form-control" placeholder="9876543210">
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="address">Address</label>
+        <input type="text" id="address" name="address" class="form-control" placeholder="Street address">
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label" for="city">City</label>
+          <input type="text" id="city" name="city" class="form-control" placeholder="Mumbai">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="zip_code">Zip Code</label>
+          <input type="text" id="zip_code" name="zip_code" class="form-control" placeholder="400001">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100" style="margin-top:1rem;padding:12px;font-size:15px;border-radius:8px;">Create Account</button>
     </form>
-    
-    <div class="text-center" style="margin-top: var(--spacing-md);">
-      <p style="font-size: 0.875rem;">Already have an account? <a href="login.html">Login</a></p>
+
+    <div class="text-center" style="margin-top:1rem;">
+      <p style="font-size:14px;color:#374151;">
+        Already have an account? <a href="login.html" style="color:#2563eb;font-weight:600;">Sign In</a>
+      </p>
     </div>
   </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('error')) {
+      const box = document.getElementById('error-box');
+      box.textContent = params.get('error');
+      box.style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>

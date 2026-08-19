@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products — Nexus Electronics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+  <style>
+    .products-page-main { padding: 32px 0; }
+    .filter-bar { display:flex; align-items:center; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+    .filter-bar select { padding:8px 16px; border:1.5px solid #e5e7eb; border-radius:8px; font-size:14px; font-family:inherit; background:#fff; cursor:pointer; }
+    .products-count { font-size:14px; color:#6b7280; margin-left:auto; }
+  </style>
+</head>
+<body>
+
+  <!-- Simple Navbar -->
+  <header class="navbar" style="position:sticky;top:0;z-index:100;">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="logo-text">Nexus<span class="logo-accent">Electronics</span></span>
+      </a>
+      <nav class="nav-actions" style="margin-left:auto;">
+        <a href="login.html" class="nav-action-link"><i class="fa-regular fa-circle-user"></i><span>Account</span></a>
+        <a href="cart.html" class="nav-action-link nav-cart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><span class="cart-badge" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="products-page-main">
+    <div class="container">
+      <h1 style="font-size:24px;font-weight:700;margin-bottom:8px;">All Products</h1>
+      <p style="color:#6b7280;margin-bottom:24px;">Browse our entire collection of premium electronics</p>
+
+      <div class="filter-bar">
+        <select id="filter-category" onchange="filterProducts()">
+          <option value="">All Categories</option>
+        </select>
+        <select id="filter-sort" onchange="filterProducts()">
+          <option value="newest">Newest First</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name A-Z</option>
+        </select>
+        <span class="products-count" id="products-count">Loading...</span>
+      </div>
+
+      <div class="products-grid" id="products-grid" style="grid-template-columns:repeat(3,1fr);">
+        <div style="grid-column:1/-1;text-align:center;padding:3rem;color:#6b7280;">Loading products...</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" style="background:#111827;color:#9ca3af;padding:20px 0;text-align:center;">
+    <p>&copy; 2026 Nexus Electronics. All rights reserved.</p>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script>
+    let allProducts = [];
+
+    // Load categories
+    fetch('php/products.php?action=categories')
+      .then(r => r.json())
+      .then(cats => {
+        const sel = document.getElementById('filter-category');
+        cats.forEach(c => {
+          sel.innerHTML += `<option value="${c.category_id}">${c.name}</option>`;
+        });
+      });
+
+    // Load products
+    fetch('php/products.php')
+      .then(r => r.json())
+      .then(data => {
+        allProducts = data;
+        renderProducts(data);
+      })
+      .catch(() => {
+        document.getElementById('products-grid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#ef4444;">Failed to load products. Make sure XAMPP is running.</div>';
+      });
+
+    function filterProducts() {
+      let filtered = [...allProducts];
+      const cat = document.getElementById('filter-category').value;
+      const sort = document.getElementById('filter-sort').value;
+
+      if (cat) filtered = filtered.filter(p => p.category_id == cat);
+
+      switch(sort) {
+        case 'price-low': filtered.sort((a,b) => a.price - b.price); break;
+        case 'price-high': filtered.sort((a,b) => b.price - a.price); break;
+        case 'name': filtered.sort((a,b) => a.name.localeCompare(b.name)); break;
+        default: break;
+      }
+
+      renderProducts(filtered);
+    }
+
+    function renderProducts(products) {
+      const grid = document.getElementById('products-grid');
+      document.getElementById('products-count').textContent = products.length + ' products';
+
+      if (products.length === 0) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:#6b7280;">No products found</div>';
+        return;
+      }
+
+      const iconMap = {
+        'Laptops': 'fa-laptop-code', 'Smartphones': 'fa-mobile-screen', 'Audio': 'fa-headphones',
+        'Desktops': 'fa-computer', 'Tablets': 'fa-tablet-screen-button', 'Accessories': 'fa-plug'
+      };
+      const colorMap = {
+        'Laptops': 'pimg-blue', 'Smartphones': 'pimg-orange', 'Audio': 'pimg-purple',
+        'Desktops': 'pimg-teal', 'Tablets': 'pimg-indigo', 'Accessories': 'pimg-red'
+      };
+
+      grid.innerHTML = products.map(p => `
+        <article class="product-card">
+          <div class="product-image-wrap">
+            <div class="product-img-placeholder ${colorMap[p.category_name] || 'pimg-blue'}">
+              <i class="fa-solid ${iconMap[p.category_name] || 'fa-box'}"></i>
+            </div>
+          </div>
+          <div class="product-info">
+            <span class="product-category-tag">${p.category_name}</span>
+            <h3 class="product-name">${p.name}</h3>
+            <p style="font-size:12px;color:#9ca3af;margin-bottom:4px;">${p.description || ''}</p>
+            <div class="product-pricing">
+              <span class="price-current">$${parseFloat(p.price).toFixed(2)}</span>
+            </div>
+            <span style="font-size:12px;color:${p.stock_qty > 0 ? '#22c55e' : '#ef4444'};">${p.stock_qty > 0 ? 'In Stock ('+p.stock_qty+')' : 'Out of Stock'}</span>
+            <button class="btn-add-cart" onclick="addToCart(${p.product_id}, '${p.name.replace(/'/g,"\\'")}', ${p.price})" ${p.stock_qty < 1 ? 'disabled style="opacity:.5;cursor:not-allowed;"' : ''}>
+              <i class="fa-solid fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </article>
+      `).join('');
+    }
+  </script>
+
+</body>
+</html>

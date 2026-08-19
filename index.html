@@ -1,229 +1,513 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nexus Electronics - Home</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Navigation -->
-    <header class="navbar">
-      <div class="container">
-        <a href="index.html" class="logo">OnlineShopping</a>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Electronics — Premium Tech, Delivered Fast</title>
+  <meta name="description" content="Shop the latest laptops, smartphones, audio, and accessories at Nexus Electronics. Best prices, fast delivery, and easy returns." />
 
-        <nav class="nav-links">
-          <a href="index.html">Home</a>
-          <a href="#products">Products</a>
-          <a href="login.html">Login</a>
-          <a href="register.html">Sign Up</a>
-          <a href="cart.html">
-            <i class="fa-solid fa-cart-shopping"></i> Cart (<span
-              id="cart-count"
-              >0</span
-            >)
-          </a>
-        </nav>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+
+<body>
+
+  <!-- ===== TOP ANNOUNCEMENT BAR ===== -->
+  <div class="announcement-bar">
+    <span><i class="fa-solid fa-bolt"></i> Free shipping on orders over $50 &nbsp;|&nbsp; Use code <strong>NEXUS10</strong> for 10% off &nbsp;|&nbsp; <a href="#">Shop Sale &rarr;</a></span>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="main-navbar">
+    <div class="nav-inner">
+      <!-- Logo -->
+      <a href="index.html" class="logo" id="site-logo">
+        <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+        <span class="logo-text">Nexus<span class="logo-accent">Electronics</span></span>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="search-bar" id="search-bar">
+        <select class="search-category" id="search-category-select">
+          <option>All</option>
+          <option>Laptops</option>
+          <option>Smartphones</option>
+          <option>Audio</option>
+          <option>Accessories</option>
+        </select>
+        <input type="text" class="search-input" id="search-input" placeholder="Search products, brands and more..." />
+        <button class="search-btn" id="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
-    </header>
 
-    <!-- Main Content -->
-    <main>
-      <!-- Simple Hero Section -->
-      <section
-        class="container mb-4 text-center"
-        style="
-          padding: 4rem 0;
-          background-color: #e9ecef;
-          border: 1px solid var(--border-color);
-        "
-      >
-        <h1>Welcome to Nexus Electronics</h1>
-        <p
-          style="
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-          "
-        >
-          Your one-stop shop for professional gear and electronics.
-        </p>
-        <a href="#products" class="btn btn-primary">Shop Now</a>
-      </section>
+      <!-- Nav Actions -->
+      <nav class="nav-actions" id="nav-actions">
+        <a href="login.html" class="nav-action-link" id="nav-login">
+          <i class="fa-regular fa-circle-user"></i>
+          <span>Account</span>
+        </a>
+        <a href="#" class="nav-action-link" id="nav-wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span>Wishlist</span>
+        </a>
+        <a href="cart.html" class="nav-action-link nav-cart" id="nav-cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge" id="cart-count">0</span>
+        </a>
+      </nav>
 
-      <!-- Categories -->
-      <section class="container mb-4">
-        <h2
-          style="
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-          "
-        >
-          Categories
-        </h2>
-        <div class="grid grid-cols-4 text-center">
-          <div class="card" style="cursor: pointer">
-            <i
-              class="fa-solid fa-laptop"
-              style="
-                font-size: 2rem;
-                color: var(--primary-color);
-                margin-bottom: 0.5rem;
-              "
-            ></i>
-            <h3>Laptops</h3>
+      <!-- Hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Secondary Nav -->
+    <nav class="secondary-nav" id="secondary-nav">
+      <div class="nav-inner">
+        <ul class="sec-nav-list">
+          <li><a href="index.html" class="sec-nav-link active">Home</a></li>
+          <li><a href="products.html" class="sec-nav-link">All Products</a></li>
+          <li><a href="products.html?cat=laptops" class="sec-nav-link">Laptops</a></li>
+          <li><a href="products.html?cat=smartphones" class="sec-nav-link">Smartphones</a></li>
+          <li><a href="products.html?cat=audio" class="sec-nav-link">Audio</a></li>
+          <li><a href="products.html?cat=accessories" class="sec-nav-link">Accessories</a></li>
+          <li><a href="#deals" class="sec-nav-link sec-nav-sale">&#128293; Deals</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-inner container">
+        <div class="hero-content">
+          <span class="hero-badge">Summer Sale &mdash; Up to 40% Off</span>
+          <h1 class="hero-title">Premium Tech,<br /><span class="hero-accent">Unbeatable Prices.</span></h1>
+          <p class="hero-subtitle">Discover the latest laptops, smartphones, and audio gear &mdash; curated for professionals and enthusiasts.</p>
+          <div class="hero-actions">
+            <a href="products.html" class="btn-hero-primary" id="hero-shop-now">Shop Now &rarr;</a>
+            <a href="#deals" class="btn-hero-ghost" id="hero-view-deals">View Deals</a>
           </div>
-          <div class="card" style="cursor: pointer">
-            <i
-              class="fa-solid fa-mobile-screen-button"
-              style="
-                font-size: 2rem;
-                color: var(--primary-color);
-                margin-bottom: 0.5rem;
-              "
-            ></i>
-            <h3>Smartphones</h3>
-          </div>
-          <div class="card" style="cursor: pointer">
-            <i
-              class="fa-solid fa-headphones-simple"
-              style="
-                font-size: 2rem;
-                color: var(--primary-color);
-                margin-bottom: 0.5rem;
-              "
-            ></i>
-            <h3>Audio</h3>
-          </div>
-          <div class="card" style="cursor: pointer">
-            <i
-              class="fa-solid fa-desktop"
-              style="
-                font-size: 2rem;
-                color: var(--primary-color);
-                margin-bottom: 0.5rem;
-              "
-            ></i>
-            <h3>Desktops</h3>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>50K+</strong>
+              <span>Happy Customers</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <strong>5000+</strong>
+              <span>Products</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+              <strong>4.8&#9733;</strong>
+              <span>Avg. Rating</span>
+            </div>
           </div>
         </div>
-      </section>
+        <div class="hero-visual">
+          <div class="hero-card-float hero-card-1">
+            <i class="fa-solid fa-laptop-code"></i>
+          </div>
+          <div class="hero-card-float hero-card-2">
+            <i class="fa-solid fa-mobile-screen"></i>
+          </div>
+          <div class="hero-card-float hero-card-3">
+            <i class="fa-solid fa-headphones"></i>
+          </div>
+          <div class="hero-circle"></div>
+        </div>
+      </div>
+    </section>
 
-      <!-- Featured Products -->
-      <section id="products" class="container mb-4">
-        <h2
-          style="
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
-          "
-        >
-          Featured Products
-        </h2>
-
-        <div class="grid grid-cols-3">
-          <!-- Product 1 -->
-          <article class="card product-card">
-            <div
-              style="
-                background-color: #f1f3f5;
-                height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-bottom: 1px solid var(--border-color);
-                margin: -1rem -1rem 1rem -1rem;
-              "
-            >
-              <i
-                class="fa-solid fa-laptop-code"
-                style="font-size: 4rem; color: var(--secondary-color)"
-              ></i>
+    <!-- ===== TRUST BADGES ===== -->
+    <section class="trust-bar">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+              <strong>Free &amp; Fast Delivery</strong>
+              <span>On orders over $50</span>
             </div>
-            <h3>Nexus ProBook M2</h3>
-            <span class="price">$1,299.00</span>
-            <button
-              class="btn btn-primary w-100"
-              onclick="addToCart(1, 'Nexus ProBook M2', 1299)"
-            >
-              Add to Cart
-            </button>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-rotate-left"></i>
+            <div>
+              <strong>30-Day Returns</strong>
+              <span>Hassle-free returns</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <strong>2-Year Warranty</strong>
+              <span>On all products</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-headset"></i>
+            <div>
+              <strong>24/7 Support</strong>
+              <span>We're always here</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CATEGORIES ===== -->
+    <section class="section categories-section" id="categories">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Shop by Category</h2>
+          <a href="products.html" class="section-link">Browse All &rarr;</a>
+        </div>
+        <div class="categories-grid">
+          <a href="products.html?cat=laptops" class="category-card" id="cat-laptops">
+            <div class="cat-icon-wrap cat-blue"><i class="fa-solid fa-laptop"></i></div>
+            <span class="cat-name">Laptops</span>
+            <span class="cat-count">120+ Products</span>
+          </a>
+          <a href="products.html?cat=smartphones" class="category-card" id="cat-smartphones">
+            <div class="cat-icon-wrap cat-purple"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <span class="cat-name">Smartphones</span>
+            <span class="cat-count">85+ Products</span>
+          </a>
+          <a href="products.html?cat=audio" class="category-card" id="cat-audio">
+            <div class="cat-icon-wrap cat-orange"><i class="fa-solid fa-headphones-simple"></i></div>
+            <span class="cat-name">Audio</span>
+            <span class="cat-count">60+ Products</span>
+          </a>
+          <a href="products.html?cat=desktops" class="category-card" id="cat-desktops">
+            <div class="cat-icon-wrap cat-green"><i class="fa-solid fa-desktop"></i></div>
+            <span class="cat-name">Desktops</span>
+            <span class="cat-count">40+ Products</span>
+          </a>
+          <a href="products.html?cat=tablets" class="category-card" id="cat-tablets">
+            <div class="cat-icon-wrap cat-red"><i class="fa-solid fa-tablet-screen-button"></i></div>
+            <span class="cat-name">Tablets</span>
+            <span class="cat-count">35+ Products</span>
+          </a>
+          <a href="products.html?cat=accessories" class="category-card" id="cat-accessories">
+            <div class="cat-icon-wrap cat-teal"><i class="fa-solid fa-plug"></i></div>
+            <span class="cat-name">Accessories</span>
+            <span class="cat-count">200+ Products</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PRODUCTS ===== -->
+    <section class="section products-section" id="products">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Products</h2>
+          <div class="product-tabs" id="product-tabs">
+            <button class="tab-btn active" data-tab="all" id="tab-all">All</button>
+            <button class="tab-btn" data-tab="laptops" id="tab-laptops">Laptops</button>
+            <button class="tab-btn" data-tab="smartphones" id="tab-smartphones">Phones</button>
+            <button class="tab-btn" data-tab="audio" id="tab-audio">Audio</button>
+          </div>
+          <a href="products.html" class="section-link">View All &rarr;</a>
+        </div>
+
+        <div class="products-grid" id="products-grid">
+
+          <!-- Product 1 -->
+          <article class="product-card" data-category="laptops" id="product-1">
+            <div class="product-badges"><span class="badge badge-sale">-18%</span></div>
+            <button class="wishlist-btn" aria-label="Add to wishlist" id="wish-1"><i class="fa-regular fa-heart"></i></button>
+            <div class="product-image-wrap">
+              <div class="product-img-placeholder pimg-blue"><i class="fa-solid fa-laptop-code"></i></div>
+            </div>
+            <div class="product-info">
+              <span class="product-category-tag">Laptop</span>
+              <h3 class="product-name">Nexus ProBook M2</h3>
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="rating-count">(284)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="price-current">$1,299.00</span>
+                <span class="price-original">$1,589.00</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart(1, 'Nexus ProBook M2', 1299)" id="add-cart-1">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
           </article>
 
           <!-- Product 2 -->
-          <article class="card product-card">
-            <div
-              style="
-                background-color: #f1f3f5;
-                height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-bottom: 1px solid var(--border-color);
-                margin: -1rem -1rem 1rem -1rem;
-              "
-            >
-              <i
-                class="fa-solid fa-headphones"
-                style="font-size: 4rem; color: var(--secondary-color)"
-              ></i>
+          <article class="product-card" data-category="audio" id="product-2">
+            <div class="product-badges"><span class="badge badge-new">New</span></div>
+            <button class="wishlist-btn" aria-label="Add to wishlist" id="wish-2"><i class="fa-regular fa-heart"></i></button>
+            <div class="product-image-wrap">
+              <div class="product-img-placeholder pimg-purple"><i class="fa-solid fa-headphones"></i></div>
             </div>
-            <h3>Sonic Noise-Cancelling Buds</h3>
-            <span class="price">$199.00</span>
-            <button
-              class="btn btn-primary w-100"
-              onclick="addToCart(2, 'Sonic Noise-Cancelling Buds', 199)"
-            >
-              Add to Cart
-            </button>
+            <div class="product-info">
+              <span class="product-category-tag">Audio</span>
+              <h3 class="product-name">Sonic ANC Pro Buds</h3>
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="rating-count">(1,042)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="price-current">$199.00</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart(2, 'Sonic ANC Pro Buds', 199)" id="add-cart-2">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
           </article>
 
           <!-- Product 3 -->
-          <article class="card product-card">
-            <div
-              style="
-                background-color: #f1f3f5;
-                height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-bottom: 1px solid var(--border-color);
-                margin: -1rem -1rem 1rem -1rem;
-              "
-            >
-              <i
-                class="fa-solid fa-mobile-screen"
-                style="font-size: 4rem; color: var(--secondary-color)"
-              ></i>
+          <article class="product-card" data-category="smartphones" id="product-3">
+            <div class="product-badges"><span class="badge badge-hot">Hot</span></div>
+            <button class="wishlist-btn" aria-label="Add to wishlist" id="wish-3"><i class="fa-regular fa-heart"></i></button>
+            <div class="product-image-wrap">
+              <div class="product-img-placeholder pimg-orange"><i class="fa-solid fa-mobile-screen"></i></div>
             </div>
-            <h3>Aura X1 Smartphone</h3>
-            <span class="price">$899.00</span>
-            <button
-              class="btn btn-primary w-100"
-              onclick="addToCart(3, 'Aura X1 Smartphone', 899)"
-            >
-              Add to Cart
-            </button>
+            <div class="product-info">
+              <span class="product-category-tag">Smartphone</span>
+              <h3 class="product-name">Aura X1 Smartphone</h3>
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="rating-count">(617)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="price-current">$899.00</span>
+                <span class="price-original">$999.00</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart(3, 'Aura X1 Smartphone', 899)" id="add-cart-3">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
           </article>
+
+          <!-- Product 4 -->
+          <article class="product-card" data-category="laptops" id="product-4">
+            <button class="wishlist-btn" aria-label="Add to wishlist" id="wish-4"><i class="fa-regular fa-heart"></i></button>
+            <div class="product-image-wrap">
+              <div class="product-img-placeholder pimg-teal"><i class="fa-solid fa-computer"></i></div>
+            </div>
+            <div class="product-info">
+              <span class="product-category-tag">Desktop</span>
+              <h3 class="product-name">ClearView 4K Monitor</h3>
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="rating-count">(389)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="price-current">$549.00</span>
+                <span class="price-original">$679.00</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart(4, 'ClearView 4K Monitor', 549)" id="add-cart-4">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Product 5 -->
+          <article class="product-card" data-category="audio" id="product-5">
+            <div class="product-badges"><span class="badge badge-sale">-25%</span></div>
+            <button class="wishlist-btn" aria-label="Add to wishlist" id="wish-5"><i class="fa-regular fa-heart"></i></button>
+            <div class="product-image-wrap">
+              <div class="product-img-placeholder pimg-red"><i class="fa-solid fa-headphones-simple"></i></div>
+            </div>
+            <div class="product-info">
+              <span class="product-category-tag">Audio</span>
+              <h3 class="product-name">BassMax Studio Headset</h3>
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span class="rating-count">(231)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="price-current">$149.00</span>
+                <span class="price-original">$199.00</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart(5, 'BassMax Studio Headset', 149)" id="add-cart-5">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </article>
+
+          <!-- Product 6 -->
+          <article class="product-card" data-category="smartphones" id="product-6">
+            <div class="product-badges"><span class="badge badge-new">New</span></div>
+            <button class="wishlist-btn" aria-label="Add to wishlist" id="wish-6"><i class="fa-regular fa-heart"></i></button>
+            <div class="product-image-wrap">
+              <div class="product-img-placeholder pimg-indigo"><i class="fa-solid fa-tablet-screen-button"></i></div>
+            </div>
+            <div class="product-info">
+              <span class="product-category-tag">Tablet</span>
+              <h3 class="product-name">FlexPad Ultra S2</h3>
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span class="rating-count">(158)</span>
+              </div>
+              <div class="product-pricing">
+                <span class="price-current">$699.00</span>
+              </div>
+              <button class="btn-add-cart" onclick="addToCart(6, 'FlexPad Ultra S2', 699)" id="add-cart-6">
+                <i class="fa-solid fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+          </article>
+
         </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>&copy; 2026 Nexus Electronics. All rights reserved.</p>
       </div>
-    </footer>
+    </section>
 
-    <script src="js/cart.js"></script>
-  </body>
+    <!-- ===== DEALS BANNER ===== -->
+    <section class="deals-banner" id="deals">
+      <div class="container">
+        <div class="deals-inner">
+          <div class="deals-text">
+            <span class="deals-eyebrow">&#128293; Limited Time</span>
+            <h2>Today's Deal</h2>
+            <p>Nexus ProBook M2 &mdash; Our best-selling powerhouse laptop at a record low price. Only <strong>12 units left!</strong></p>
+            <div class="deal-countdown" id="deal-countdown">
+              <div class="countdown-unit"><span id="cd-hours">08</span><label>Hours</label></div>
+              <div class="countdown-sep">:</div>
+              <div class="countdown-unit"><span id="cd-mins">34</span><label>Mins</label></div>
+              <div class="countdown-sep">:</div>
+              <div class="countdown-unit"><span id="cd-secs">22</span><label>Secs</label></div>
+            </div>
+            <div class="deal-pricing">
+              <span class="deal-price">$999.00</span>
+              <span class="deal-original">$1,299.00</span>
+              <span class="deal-save">Save $300</span>
+            </div>
+            <a href="products.html" class="btn-deal" id="btn-grab-deal">Grab This Deal &rarr;</a>
+          </div>
+          <div class="deals-visual">
+            <div class="deal-product-icon"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="deal-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHY NEXUS ===== -->
+    <section class="section why-section">
+      <div class="container">
+        <div class="section-header center">
+          <h2 class="section-title">Why Shop at Nexus?</h2>
+          <p class="section-subtitle">Trusted by thousands of customers across the country</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card" id="why-1">
+            <div class="why-icon why-icon-blue"><i class="fa-solid fa-certificate"></i></div>
+            <h3>100% Authentic Products</h3>
+            <p>Every product is sourced directly from authorized distributors and brand partners.</p>
+          </div>
+          <div class="why-card" id="why-2">
+            <div class="why-icon why-icon-green"><i class="fa-solid fa-tags"></i></div>
+            <h3>Best Price Guarantee</h3>
+            <p>Found it cheaper elsewhere? We'll match the price &mdash; no questions asked.</p>
+          </div>
+          <div class="why-card" id="why-3">
+            <div class="why-icon why-icon-orange"><i class="fa-solid fa-star"></i></div>
+            <h3>Expert Curated Selection</h3>
+            <p>Our tech experts hand-pick products that actually deliver on their promises.</p>
+          </div>
+          <div class="why-card" id="why-4">
+            <div class="why-icon why-icon-purple"><i class="fa-solid fa-lock"></i></div>
+            <h3>Secure Checkout</h3>
+            <p>Shop with confidence using SSL-encrypted, PCI-compliant checkout.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter-section">
+      <div class="container">
+        <div class="newsletter-inner">
+          <div class="newsletter-text">
+            <h2>Stay in the Loop</h2>
+            <p>Get exclusive deals, new arrivals, and tech tips delivered to your inbox.</p>
+          </div>
+          <form class="newsletter-form" id="newsletter-form" onsubmit="handleNewsletter(event)">
+            <input type="email" id="newsletter-email" placeholder="Your email address" required />
+            <button type="submit" id="newsletter-submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo footer-logo-link" id="footer-logo">
+            <span class="logo-icon"><i class="fa-solid fa-bolt"></i></span>
+            <span class="logo-text">Nexus<span class="logo-accent">Electronics</span></span>
+          </a>
+          <p>Your go-to destination for premium electronics and tech gadgets at competitive prices.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook" id="social-fb"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter" id="social-tw"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram" id="social-ig"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube" id="social-yt"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html?cat=laptops">Laptops</a></li>
+            <li><a href="products.html?cat=smartphones">Smartphones</a></li>
+            <li><a href="products.html?cat=audio">Audio</a></li>
+            <li><a href="#deals">Today's Deals</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Track Order</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Warranty</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <ul>
+            <li><a href="login.html">Sign In</a></li>
+            <li><a href="register.html">Create Account</a></li>
+            <li><a href="orders.html">My Orders</a></li>
+            <li><a href="#">Wishlist</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Nexus Electronics. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/home.js"></script>
+</body>
+
 </html>
